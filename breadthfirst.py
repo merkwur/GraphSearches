@@ -20,8 +20,7 @@ class Graph:
         """
 
         if self.is_directed:
-            if u not in self.graph[u]:
-                self.graph[u].append(v)
+            self.graph[u].append(v)
         
         else:
             if v not in self.graph[u] or u not in self.graph[v]: 
