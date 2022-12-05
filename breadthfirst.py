@@ -37,7 +37,6 @@ class Graph:
         for e, i in enumerate(self.graph.values()):
             for j in i:
                 self.adj_matrix[e][j] += 1
-        return self.adj_matrix 
 
     def BFS(self, start_node: int, end_node: int=0, is_shortest: bool=False) -> list[int]: 
 
@@ -77,7 +76,7 @@ class Graph:
         Finds the shortest path between two nodes using adjecency matrix.
         """
 
-        # mat = self.adjecency_matrix() # use this if you are not instantiating adjecency matrix from outer
+        # mat = self.adjecency_matrix() # use this if you are not instantiating adjecency matrix from outside
         distance = 0
         for i in range(end_node, 0, -1):
             back = self.adj_matrix[i] # change this to mat if it not instantiated
