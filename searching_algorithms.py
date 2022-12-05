@@ -3,14 +3,12 @@
 # https://www.coursera.org/learn/algorithms-graphs-data-structures/
 # https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
 
-
 import numpy as np
 import graph 
 
 class GraphSearch:
     
     # initialize the graph here
-
     g = graph.Graph()
     g.addEdge(0, 1)
     g.addEdge(1, 2)
@@ -29,11 +27,9 @@ class GraphSearch:
         """
         Breadth first searching algorithm 
         """
-        try:
-            assert type(start_node) == int
-        except AssertionError:
-            print(f"Node type ({start_node}) must be an integer")
-
+        assert type(start_node) == int, f"Node type({start_node}) must be an integer"
+        assert type(end_node) == int, f"Node type({end_node}) must be an integer"
+    
         Q = [start_node]
         self.explored.append(start_node)
 
@@ -56,20 +52,19 @@ class GraphSearch:
         """
         distance = 0
         for i in range(end_node, 0, -1):
-            back = self.adjecency_matrix[i] 
+            lookback = self.adjecency_matrix[i] 
             distance += 1
-            for j in np.where(back>0)[0]:
+            for j in np.where(lookback > 0)[0]:
                 if j == start_node:
                     return distance
-        return distance
-
+    
     def DFS(self, start_node: int=0) -> list[int]:
         """
         Depth first search algorithm (recursive)
         """
         if start_node not in self.explored:
             self.explored.append(start_node)
-            
+
         for i in self.graph[start_node]:
             if i not in self.explored:
                 self.explored.append(i)
@@ -77,10 +72,9 @@ class GraphSearch:
 
         return self.explored
 
-
 gs = GraphSearch()
 print(gs.graph)
 print("")
 print(gs.adjecency_matrix)
 print("")
-print(gs.DFS())
+print(gs.BFS(0, 4))
