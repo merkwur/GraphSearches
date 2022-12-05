@@ -48,8 +48,6 @@ class Graph:
         except AssertionError:
             print(f"Node type ({start_node}) must be an integer")
 
-        print(self.graph)
-
         Q = [start_node]
         explored = [start_node]
 
@@ -67,7 +65,7 @@ class Graph:
                     Q.append(w) 
 
         distance = self.back_tracing(start_node, end_node)
-        print(distance)
+
         return explored, distance      
 
     def back_tracing(self, start_node, end_node):
