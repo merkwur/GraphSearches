@@ -69,7 +69,7 @@ class GraphSearch:
         """
         if start_node not in self.explored:
             self.explored.append(start_node)
-
+            
         for i in self.graph[start_node]:
             if i not in self.explored:
                 self.explored.append(i)
