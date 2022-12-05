@@ -63,7 +63,7 @@ class GraphSearch:
                     return distance
         return distance
 
-    def DFS(self, start_node):
+    def DFS(self, start_node: int=0) -> list[int]:
         """
         Depth first search algorithm (recursive)
         """
@@ -72,10 +72,10 @@ class GraphSearch:
                 self.explored.append(i)
                 self.DFS(i)
 
-            print(i, self.explored)
+        return self.explored
 
 
 gs = GraphSearch()
 print(gs.graph)
 print(gs.adjecency_matrix)
-print(gs.DFS(0))
+print(gs.DFS())
