@@ -22,8 +22,6 @@ class Graph:
                 self.graph[u].append(v)
                 self.graph[v].append(u)
 
-
-
     def adjecency_matrix(self) -> np.ndarray:
         """
         Creates an adjecency matrix of a given graph.
