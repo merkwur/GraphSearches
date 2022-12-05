@@ -1,9 +1,9 @@
 # !usr/bin/python3.10
 
+# https://www.coursera.org/learn/algorithms-graphs-data-structures/
 # https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
 
 
-from collections import defaultdict
 import numpy as np
 import graph 
 
@@ -18,7 +18,7 @@ class GraphSearch:
     g.addEdge(3, 0)
     g.addEdge(3, 4)
     g.addEdge(4, 5)
-    g.adjecency_matrix()
+    g.adjecency_matrix() # for the backtracing algorithm, it is necessary
 
     def __init__(self):
         self.graph = self.g.graph
