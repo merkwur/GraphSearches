@@ -11,7 +11,7 @@ class Graph:
 
         self.graph = defaultdict(list)
         self.is_directed = is_directed
-        self.adj_matrix = np.zeros((1))
+        self.adj_matrix = []
 
     def addEdge(self, u: int, v: int) -> defaultdict[list]:
 
