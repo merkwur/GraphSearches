@@ -14,7 +14,7 @@ class GraphSearch:
     g = graph.Graph()
     g.addEdge(0, 1)
     g.addEdge(1, 2)
-    g.addEdge(2, 3)
+    g.addEdge(2, 4)
     g.addEdge(3, 0)
     g.addEdge(3, 4)
     g.addEdge(4, 5)
@@ -67,6 +67,9 @@ class GraphSearch:
         """
         Depth first search algorithm (recursive)
         """
+        if start_node not in self.explored:
+            self.explored.append(start_node)
+
         for i in self.graph[start_node]:
             if i not in self.explored:
                 self.explored.append(i)
@@ -77,5 +80,7 @@ class GraphSearch:
 
 gs = GraphSearch()
 print(gs.graph)
+print("")
 print(gs.adjecency_matrix)
+print("")
 print(gs.DFS())
