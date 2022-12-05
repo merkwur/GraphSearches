@@ -16,16 +16,16 @@ class GraphSearch:
     g.addEdge(3, 0)
     g.addEdge(3, 4)
     g.addEdge(4, 5)
-    g.adjecency_matrix() # for the backtracing algorithm, it is necessary
+    g.adjacency_matrix() # for the backtracing algorithm, it is necessary
 
     def __init__(self):
         self.graph = self.g.graph
-        self.adjecency_matrix = self.g.adj_matrix
+        self.adjacency_matrix = self.g.adj_matrix
         self.explored = []
 
     def BFS(self, start_node: int, end_node: int=0, is_shortest: bool=False) -> tuple[list[int], int]: 
         """
-        Breadth first searching algorithm 
+        Breadth-first searching algorithm 
         """
         assert type(start_node) == int, f"Node type({start_node}) must be an integer"
         assert type(end_node) == int, f"Node type({end_node}) must be an integer"
@@ -48,11 +48,11 @@ class GraphSearch:
 
     def back_tracing(self, start_node, end_node):
         """
-        Finds the shortest path between two nodes using adjecency matrix.
+        Finds the shortest path between two nodes using an adjacency matrix.
         """
         distance = 0
         for i in range(end_node, 0, -1):
-            lookback = self.adjecency_matrix[i] 
+            lookback = self.adjacency_matrix[i] 
             distance += 1
             for j in np.where(lookback > 0)[0]:
                 if j == start_node:
@@ -60,7 +60,7 @@ class GraphSearch:
     
     def DFS(self, start_node: int=0) -> list[int]:
         """
-        Depth first search algorithm (recursive)
+        Depth-first search algorithm (recursive)
         """
         if start_node not in self.explored:
             self.explored.append(start_node)
@@ -75,6 +75,6 @@ class GraphSearch:
 gs = GraphSearch()
 print(gs.graph)
 print("")
-print(gs.adjecency_matrix)
+print(gs.adjacency_matrix)
 print("")
 print(gs.BFS(0, 4))

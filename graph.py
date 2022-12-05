@@ -12,7 +12,7 @@ class Graph:
 
     def addEdge(self, u: int, v: int) -> defaultdict[list]:
         """
-        Creates a edge between specified nodes. The default is undirected graph.
+        Creates an edge between the specified nodes. The default is an undirected graph.
         """
         if self.is_directed:
             self.graph[u].append(v)
@@ -22,9 +22,9 @@ class Graph:
                 self.graph[u].append(v)
                 self.graph[v].append(u)
 
-    def adjecency_matrix(self) -> np.ndarray:
+    def adjacency_matrix(self) -> np.ndarray:
         """
-        Creates an adjecency matrix of a given graph.
+        Creates an adjacency matrix of a given graph.
         """
         self.adj_matrix = np.zeros((len(self.graph), len(self.graph)))
         for i in sorted(self.graph.keys()):
