@@ -23,7 +23,7 @@ class GraphSearch:
         self.adjacency_matrix = self.g.adj_matrix
         self.explored = []
 
-    def BFS(self, start_node: int, end_node: int=0, is_shortest: bool=False) -> tuple[list[int], int]: 
+    def BFS(self, start_node: int, end_node: int=0, is_shortest: bool=False) -> tuple[list[int], int] or list[int]: 
         """
         Breadth-first searching algorithm 
         """
@@ -42,9 +42,10 @@ class GraphSearch:
                 if w not in self.explored: 
                     self.explored.append(w)
                     Q.append(w) 
-
-        distance = self.back_tracing(start_node, end_node)
-        return (self.explored, distance )     
+        if is_shortest:
+            distance = self.back_tracing(start_node, end_node)
+            return (self.explored, distance)     
+        return self.explored
 
     def back_tracing(self, start_node, end_node):
         """
@@ -77,4 +78,4 @@ print(gs.graph)
 print("")
 print(gs.adjacency_matrix)
 print("")
-print(gs.BFS(0, 4))
+print(gs.BFS(0, 4, True))
