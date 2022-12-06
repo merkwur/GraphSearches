@@ -26,8 +26,15 @@ class Graph:
         """
         Creates an adjacency matrix of a given graph.
         """
+        m = max([max(i) for i in self.graph.values()])
+        if m not in self.graph.keys():
+            self.graph[m] = []
+
         self.adj_matrix = np.zeros((len(self.graph), len(self.graph)))
+
         for i in sorted(self.graph.keys()):
             for j in self.graph[i]:
+                if j not in self.graph.keys():
+                    self.graph[j] = []
                 self.adj_matrix[i][j] += 1
         return self.adj_matrix
