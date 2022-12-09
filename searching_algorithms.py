@@ -14,6 +14,8 @@ class GraphSearch:
     g.addEdge(3, 0)
     g.addEdge(3, 4)
     g.addEdge(4, 5)
+    g.addEdge(4, 6)
+    g.addEdge(6, 7)
     g.adjacency_matrix() # for the backtracing algorithm, it is necessary
 
     def __init__(self):
@@ -44,39 +46,19 @@ class GraphSearch:
                     Q.append(w) 
                     
         if is_shortest:
-            distance = self.distance(start_node, end_node)
+            distance = self.distance()
             return (self.explored, distance)     
         return self.explored
 
-    def distance(self, start_node: int, end_node: int) -> int:
-        """
-        Finds the shortest path between two nodes.
-        !! This distance function is useless, if the graph has branches that not contain the end node.
-        self.d should be reset till the backtracking endpoint. 
-        """ 
-        if start_node not in self.distance_explored:
-            self.distance_explored.append(start_node)
-            self.d += 1
-        
-        if self.graph[start_node] != []:
-            for i in self.graph[start_node]: 
-                if i != end_node:
-                    self.distance_explored.append(i)
-                    self.distance(i, end_node)
-                    self.d += 1  
-                            
-        # else:
-            # for backtrace in reverse(self.distance.explored):
-                # self.d -= 1 
-                # if self.graph[backtrace] has len > 1 and other element not in self.distance.explored:
-                    # self.distance(other_element, end_node):
-
-        return self.d
+    def distance(self) -> int:
+        return len(self.explored) - 1
 
     def DFS(self, start_node: int=0) -> list[int]:
         """
         Depth-first search algorithm (recursive)
         """
+        assert type(start_node) == int, f"Node type({start_node}) must be an integer"
+
         if start_node not in self.explored:
             self.explored.append(start_node)
 
@@ -92,4 +74,4 @@ print(gs.graph)
 print("")
 print(gs.adjacency_matrix)
 print("")
-print(gs.BFS(0, 5, True))
+print(gs.BFS(0, 7, True))
