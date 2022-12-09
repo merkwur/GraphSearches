@@ -16,8 +16,10 @@ class Graph:
         Creates an edge between the specified nodes. The default is an undirected graph.
         """
         if self.is_directed:
-            for i in v:
-                self.graph[u].append(i)
+            if type(v) == list:
+                for i in v:
+                    self.graph[u].append(i)
+            else: self.graph[u].append(i)
         
         else:
             if v not in self.graph[u]:
