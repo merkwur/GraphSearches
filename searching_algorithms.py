@@ -16,13 +16,12 @@ class GraphSearch:
     g.addEdge(4, 5)
     g.addEdge(4, 6)
     g.addEdge(6, 7)
-    g.adjacency_matrix() # for the backtracing algorithm, it is necessary
+    g.adjacency_matrix() 
 
     def __init__(self):
         self.graph = self.g.graph
         self.adjacency_matrix = self.g.adj_matrix
         self.explored = []
-        self.distance_explored = []
         self.d = 0
 
     def BFS(self, start_node: int, end_node: int=0, is_shortest: bool=False) -> tuple[list[int], int] or list[int]: 
