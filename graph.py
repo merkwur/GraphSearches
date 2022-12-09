@@ -19,7 +19,7 @@ class Graph:
             if type(v) == list:
                 for i in v:
                     self.graph[u].append(i)
-            else: self.graph[u].append(i)
+            else: self.graph[u].append(v)
         
         else:
             if v not in self.graph[u]:
