@@ -20,8 +20,9 @@ class Graph:
                 self.graph[u].append(i)
         
         else:
-            if v not in self.graph[u] or u not in self.graph[v]: 
+            if v not in self.graph[u]:
                 self.graph[u].append(v)
+            if u not in self.graph[v]: 
                 self.graph[v].append(u)
 
     def complete_graph(self):
