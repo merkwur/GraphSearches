@@ -1,14 +1,29 @@
 import matplotlib.pyplot as plt
+plt.style.use("dark_background")
+
 
 def draw_network(G: dict, points: list) -> plt.plot:
     line_points = []
+    plt.tick_params(
+                    axis= 'both',      
+                    which='both', 
+                    color='blue',    
+                    bottom=False,      
+                    top=   False,  
+                    left=  False,
+                    right= False,        
+                    labelbottom=False,
+                    labelleft=False
+                    )
+    plt.axis("off")
     for k, v in G.items():
         for link in v:
         
             line_points.append([points[0][k], points[0][link]])
             line_points.append([points[1][k], points[1][link]])
-
+            
             plt.annotate(f"{k}", (points[0][k], points[1][k]), 
+
                          color="w", verticalalignment='center', 
                          horizontalalignment='center',
                          zorder=420
