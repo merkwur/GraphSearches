@@ -1,32 +1,17 @@
 # !usr/bin/python3.10
 # https://www.coursera.org/learn/algorithms-graphs-data-structures/
 
-import numpy as np
-import graph 
-import time
+from graph import Graph
+import matplotlib.pyplot as plt
 
 class GraphSearch:
-    
-    # initialize the graph here
-    g = graph.Graph(True)
-    g.addEdge(0, 1)
-    g.addEdge(1, 2)
-    g.addEdge(2, 3)
-    g.addEdge(3, 8)
-    g.addEdge(2, 4)
-    g.addEdge(4, 5)
-    g.addEdge(5, 6)
-    g.addEdge(6, 7)
 
-    g.adjacency_matrix() 
-
-    def __init__(self):
-        self.graph = self.g.graph
-        self.adjacency_matrix = self.g.adj_matrix
+    def __init__(self, graph, matrix):
+        self.graph = graph
+        self.adjacency_matrix = matrix
         self.BFSExplored = []
         self.DFSExplored = []
-        self.dist = 0
-
+        
     def BFS(self, start_node: int, end_node: int=0, is_shortest: bool=False) -> tuple[list[int], int] or list[int]: 
         """
         Breadth-first searching algorithm 
@@ -54,6 +39,10 @@ class GraphSearch:
         return self.BFSExplored
 
     def distance(self, end_node: int) -> int:
+        """
+        Calculates the shortest distance from start node to end node. 
+        Sort of backtraces from the last node's which if is not the end node of the whole graph.
+        """
         
         for i in self.BFSExplored[1:]:
             self.dist += 1            
@@ -86,10 +75,17 @@ class GraphSearch:
         
         return self.DFSExplored
 
-gs = GraphSearch()
+
+
+g = Graph()
+
+gs = GraphSearch(g.create_graph([(0, 1), (2, 1), (1, 2), (1, 3), (2, 4), (1, 4)], True), g.create_adjacency_matrix())
+
 print(gs.graph)
-print("")
-print(gs.adjacency_matrix)
-print("")
-print("BradthFirstSearch", gs.BFS(0, 7, True))
-# print("DepthFirstSearch", gs.DFS(4))
+# print("")
+# # print(gs.adjacency_matrix)
+# plt.matshow(gs.adjacency_matrix)
+# plt.show()
+# print("")
+# # print("BradthFirstSearch", gs.BFS(0, 7, True))
+print("DepthFirstSearch", gs.DFS(0))

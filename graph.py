@@ -1,49 +1,68 @@
 # usr/bin/python3.10
-# https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
 
 from collections import defaultdict
 import numpy as np
 
 class Graph: 
-    def __init__(self, is_directed: bool=False):
-
-        self.graph = defaultdict(list)
-        self.is_directed = is_directed
+    def __init__(self):
+        self.graph = defaultdict(list[int])
         self.adj_matrix = []
 
-    def addEdge(self, u: int, v: int or list[int]) -> defaultdict[list]:
+    def create_graph(self, nodes: list or tuple[tuple or list[int]], is_directed: bool=False) -> defaultdict[int, list[int]]:
         """
-        Creates an edge between the specified nodes. The default is an undirected graph.
+        Creates an edge between two specified nodes. 
+        Conventially, nodes = list[tuple(int: a, int: b)].
+        In directed graph, tuple/s contains 'from a', and "to b" nodes respectively.
+        The default is an undirected graph.
         """
-        if self.is_directed:
-            if type(v) == list:
-                for i in v:
-                    self.graph[u].append(i)
-            else: self.graph[u].append(v)
         
+        if type(nodes) not in [list, tuple]:
+            raise TypeError("nodes type must be a list of tuples that contains a pair of integer 'list[tuple(int, int)]'")
+
+        if len(nodes) < 1: 
+            raise ValueError("nodes cannot be an empty list")
+    
+
+        if is_directed:
+            for node in nodes:
+                if type(node) not in [tuple, list]:
+                    raise TypeError("all the list elements must be a tuple or list that contains a pair of integers")
+                if len(node) != 2:
+                    raise ValueError("tuple must contains exactly 2 integers; 'from' node and 'to' node")
+
+                if node[1] not in self.graph[node[0]]:
+                    if not self.graph[node[0]]:
+                        self.graph[node[0]] = []
+                    self.graph[node[0]].append(node[1])
+
+                if not self.graph[node[1]]:
+                    self.graph[node[1]] = []
+
+                    
         else:
-            if v not in self.graph[u]:
-                self.graph[u].append(v)
-            if u not in self.graph[v]: 
-                self.graph[v].append(u)
+            for node in nodes:
+                if type(node) not in [tuple, list]:
+                    raise TypeError("all the list elements must be a tuple or list that contains a pair of integers")
+                if len(node) != 2:
+                    raise ValueError("tuple must contains exactly 2 integers; 'from' node and 'to' node")
+                
+                if node[1] not in self.graph[node[0]]:
+                    self.graph[node[0]].append(node[1])
+                if node[0] not in self.graph[node[1]]:
+                    self.graph[node[1]].append(node[0])
 
-    def complete_graph(self):
-        """
-        completes the end nodes as an empty list
-        """
-        for i in list(self.graph):
-            for j in self.graph[i]:
-                if j not in self.graph:
-                    self.graph[j] = []
-
-    def adjacency_matrix(self) -> np.ndarray:
+        return self.graph
+                
+        
+    def create_adjacency_matrix(self) -> np.ndarray:
         """
         Creates an adjacency matrix of a given graph.
         """
-        self.complete_graph()
         self.adj_matrix = np.zeros((len(self.graph), len(self.graph)))
 
         for i in sorted(self.graph.keys()):
             for j in self.graph[i]:
                 self.adj_matrix[i][j] += 1
         return self.adj_matrix
+    
+
