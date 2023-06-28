@@ -4,17 +4,6 @@ plt.style.use("dark_background")
 
 def draw_network(G: dict, points: list) -> plt.plot:
     line_points = []
-    plt.tick_params(
-                    axis= 'both',      
-                    which='both', 
-                    color='blue',    
-                    bottom=False,      
-                    top=   False,  
-                    left=  False,
-                    right= False,        
-                    labelbottom=False,
-                    labelleft=False
-                    )
     plt.axis("off")
     for k, v in G.items():
         for link in v:
