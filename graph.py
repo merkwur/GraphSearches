@@ -6,7 +6,7 @@ import numpy as np
 class Graph: 
     def __init__(self):
         self.graph = defaultdict(list[int])
-        self.adj_matrix = []
+        self.adj_matrix = None
 
     def create_graph(self, nodes: list or tuple[tuple or list[int]], is_directed: bool=False) -> defaultdict[int, list[int]]:
         """
@@ -54,10 +54,13 @@ class Graph:
         return self.graph
                 
         
-    def create_adjacency_matrix(self) -> np.ndarray:
+    def create_adjacency_matrix(self, graph: dict = False) -> np.ndarray:
         """
         Creates an adjacency matrix of a given graph.
         """
+        if graph: 
+            self.graph = graph
+
         self.adj_matrix = np.zeros((len(self.graph), len(self.graph)))
 
         for i in sorted(self.graph.keys()):

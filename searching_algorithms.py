@@ -1,14 +1,17 @@
 # !usr/bin/python3.10
 # https://www.coursera.org/learn/algorithms-graphs-data-structures/
 
+import utils
+from draw import draw_network 
 from graph import Graph
 import matplotlib.pyplot as plt
 
 class GraphSearch:
 
-    def __init__(self, graph, matrix):
+    def __init__(self, graph: dict, matrix: bool = False):
         self.graph = graph
-        self.adjacency_matrix = matrix
+        if matrix:
+            self.adjacency_matrix = matrix
         self.BFSExplored = []
         self.DFSExplored = []
         
@@ -38,21 +41,6 @@ class GraphSearch:
             return (self.BFSExplored, self.distance(end_node))     
         return self.BFSExplored
 
-    def distance(self, end_node: int) -> int:
-        """
-        Calculates the shortest distance from start node to end node. 
-        Sort of backtraces from the last node's which if is not the end node of the whole graph.
-        """
-        
-        for i in self.BFSExplored[1:]:
-            self.dist += 1            
-            if len(self.graph[i]) > 1:
-                for j in self.graph[i]:
-                    d = self.DFS(j, True)
-                    self.dist -= len(d) if d[-1] != end_node else 0
-
-        return self.dist
-
 
     def DFS(self, start_node: int=3, is_distance: bool=False) -> list[int]:
         """
@@ -78,14 +66,19 @@ class GraphSearch:
 
 
 g = Graph()
+G = g.create_graph([(0, 1), (2, 0), (1, 2), (2, 3), (2, 4), (2, 7), 
+                    (3, 4), (4, 5), (5, 6), (6, 3), (4, 6), (4, 8), 
+                    (4, 5), (7, 10), (8, 10), (10, 9), (9, 8)
+                    ], True)
+gs = GraphSearch(G)
 
-gs = GraphSearch(g.create_graph([(0, 1), (2, 1), (1, 2), (1, 3), (2, 4), (1, 4)], True), g.create_adjacency_matrix())
 
-print(gs.graph)
-# print("")
-# # print(gs.adjacency_matrix)
-# plt.matshow(gs.adjacency_matrix)
-# plt.show()
-# print("")
-# # print("BradthFirstSearch", gs.BFS(0, 7, True))
-print("DepthFirstSearch", gs.DFS(0))
+points = utils.random_layout(G)
+draw_network(G, points)
+
+
+
+
+
+
+# print("DepthFirstSearch", gs.DFS(0))
