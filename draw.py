@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 plt.style.use("dark_background")
 
 
-def draw_network(G: dict, points: list) -> plt.plot:
+def draw_graph(G: dict, points: list) -> plt.plot:
     line_points = []
     plt.axis("off")
 

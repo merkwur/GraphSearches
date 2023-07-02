@@ -8,7 +8,7 @@ class Graph:
         self.graph = defaultdict(list[int])
         self.adj_matrix = None
 
-    def create_graph(self, nodes: list or tuple[tuple or list[int]], is_directed: bool=False) -> defaultdict[int, list[int]]:
+    def add_edges(self, nodes: list or tuple[tuple or list[int]], is_directed: bool=False) -> defaultdict[int, list[int]]:
         """
         Creates an edge between two specified nodes. 
         Conventially, nodes = list[tuple(int: a, int: b)].

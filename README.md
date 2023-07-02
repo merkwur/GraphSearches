@@ -6,7 +6,7 @@ Depth-First Searching algorithm
 Adjecency Matrix
 
 TO-DO 
-Kosaraju's Algorithm
+Kosaraju's Algorithm (there are a couple of minor issues left) Issue is related to Depth First Search. 
 
 
 
