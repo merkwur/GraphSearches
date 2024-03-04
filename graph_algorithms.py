@@ -7,7 +7,7 @@ class GraphAlgorithms(Graph):
         super().__init__()
         self.is_visited: set[int] = set()
         self.graph: Sequence[tuple] = self.add_edges(nodes)
-        self.adjacency_list: dict[list] = self.adjacency_view()
+        self.adjacency_list: dict[list] = self.update_adjacency_view()
         print(self.adjacency_list)
 
     # make callable outside the class
@@ -120,15 +120,7 @@ class GraphAlgorithms(Graph):
 
 
 
-graph = [(0, 1), (1, 2),(0, 2), (2, 3), (1, 3), (1, 4), (4, 5), (5, 3), (2, 6), (6, 7)]
-G = Graph(False)
-GA = GraphAlgorithms(G.adjacency_view())
-G.add_edges(graph)
-# print(G.graph)
-# print(G.adjacency_view())
-# print(G.adjacency_matrix_view())
-GA.depth_first(0) 
-print(GA.is_visited)
+
 
 
 

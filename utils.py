@@ -1,7 +1,7 @@
 
 import numpy as np
 
-def random_layout(G: dict, center: tuple[float or int] = None, dim: int = 2, min_dist: float = 20.) -> list[list, list]:
+def random_layout(G: dict, center: tuple[float | int] = None, dim: int = 2, min_dist: float = 20.) -> list[list, list]:
     points = [[], []]
     M = max(G.keys())
     for i in G.keys():
@@ -10,14 +10,9 @@ def random_layout(G: dict, center: tuple[float or int] = None, dim: int = 2, min
     return points
 
 def grid_layout(G):
-
     l = len(G.keys())
-
     p = np.random.binomial(1, .72, (l, l))
     return [(np.sum(p, axis=0) + np.random.randint(0, l//2, l)).tolist(), (np.sum(p, axis=1)+ np.random.randint(0, l//2, l)).tolist()]
 
 
-'''
-make a decent layouts
-'''
 
