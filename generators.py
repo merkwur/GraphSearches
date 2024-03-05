@@ -1,7 +1,8 @@
 import random 
+from typing import Sequence
 
-def random_graph(v, e, satiation=.2): 
-    
+def random_graph(v: int, e: int | None = None, satiation: float =.2) -> Sequence[tuple[int, int]]: 
+    if not e: e = v + 1
     satiations = dict.fromkeys(range(v), 0)
     edges = []
     while e > 0:

@@ -1,7 +1,7 @@
 # usr/bin/python3.10
 
 from collections import defaultdict
-from collections.abc import Sequence
+from typing import Sequence
 import numpy as np
 from functools import lru_cache
 
