@@ -24,10 +24,9 @@ class Graph:
             self.update_adjacency_view.cache_clear()
             self.graph.append(edge)
 
-    @lru_cache
+    @lru_cache(maxsize=1)
     def update_adjacency_view(self) -> dict: 
         for f, t in self.graph:
-            print(f"in the loop {f}, {t}")
             # if is directed add "to" vertex in to "from"s neighs and vice versa
             if (not self.is_directed): 
                 if t not in self.adjacency_view[f]: 
