@@ -1,12 +1,5 @@
-## Graph Search Algorithms
+## Graph Library
 
-It's include graph maker
-Breadth-First Searching algorithm
-Depth-First Searching algorithm
-Adjecency Matrix
-
-TO-DO 
-Kosaraju's Algorithm (there are a couple of minor issues left) Issue is related to Depth First Search. 
-
+Graphs are fascinating objects. I am creating this library to have an understanding of graphs.  
 
 
